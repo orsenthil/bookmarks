@@ -1,0 +1,7 @@
+-/images
+-__pycache__
+-jquery*
+-TAGS
+-*.json
+-*.db
+-*.log

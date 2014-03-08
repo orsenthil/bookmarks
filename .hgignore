@@ -1,0 +1,11 @@
+syntax: glob
+
+*~
+*.pyc
+*.log
+*.db
+*.json
+TAGS
+__pycache__/
+docs/myrst.css
+docs/readme.html

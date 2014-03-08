@@ -1,0 +1,70 @@
+/* GLOBAL */
+@import url("http://fonts.googleapis.com/css?family=Droid+Sans|Open+Sans");
+
+
+html {
+    background-image: url(/img/bg.jpeg);
+    background-repeat: repeat-x;
+    background-color: #4c6d8e;
+}
+
+body {
+    height: 100%; max-width: 1000px; margin: 15px auto;
+    background: #e8e8e8;
+    font-family: 'Open Sans', 'Droid Sans', sans-serif, Verdana, Lucida; }
+a { color: #003399; text-decoration: none; cursor: pointer; }
+a:hover { text-decoration: underline; }
+img { border: 0; margin: 0; }
+
+/* Header & footer & contents */
+#header { padding: 10px 25px; background: #eeeeee; text-align: center; }
+#header .title { font-size: 40px; font-weight: bold; color: #440022; padding: 0 25px; }
+#header .subtitle {font-size: 20px; font-weight:bold; color: #880044; }
+#header img { float: right; margin: -45px 20px; }
+
+#footer { padding: 5px; background: #eeeeee; font-size: 10px; font-weight: bold; }
+#contents { padding: 10px 50px; background: #ffffff; }
+.btn_add { float: right; }
+
+/* Search box */
+.hdr { font-size: 16px; font-weight: bold; width: 100%; display: inline-block; }
+.hdr span.label { float: left; vertical-align: middle; }
+.hdr img.btn_search { float: right; vertical-align: middle; }
+.hdr span.num_wrapper { float: right; vertical-align: middle; }
+.hdr span.sterm, .hdr span.nbookmarks { color: #336699; }
+.hdr .wrapper { padding: 0 20px 0 10px; overflow: hidden; vertical-align: middle; }
+.hdr .wrapper input { width: 100%; }
+.examples { font-size: 13px; font-weight: bold; color: #888888; padding: 10px 0; }
+.examples tt { font-style: italic; font-weight: normal; }
+
+/* Bookmarks */
+li.bookmark { font-size: 12px; color: #777777; padding-bottom: 7px; }
+li.bookmark .title { font-family: 'Droid Sans'; font-size: 17px; font-weight: bold; color: #002244; }
+li.bookmark a.tag { color: #008000; }
+li.bookmark a.tag:hover.tag { text-decoration: none; color: #884400; }
+li.bookmark .added { color: #ff8800; }
+li.bookmark a.url { color: #336699; }
+li.bookmark .btns { float: right; margin-right: 20px; }
+
+/* Modal dialog */
+#overlay { position: absolute; z-index: 9000; display: none; background-color: #000000; }
+#dialog {
+    /* height: 300px; width: 500px; */
+    position: absolute; z-index: 9999; display: none;
+    border: 3px solid #dddddd; color: #003366; background-color: #cccccc;
+    font-size: 1em; text-align: left; }
+#dialog div.title {
+    color: #000000; background-color: #999999;
+    font-size: 1.1em; font-weight: bold;
+    padding: 5px 5px 5px 10px; border-bottom: 3px solid #dddddd; }
+#dialog form { padding: 15px; }
+#dialog form label, #dialog form td { font-weight: bold; padding-right: 10px; }
+#dialog form span.comment { color: #666666; font-style: italic; font-size: 0.9em; }
+#dialog form hr { margin: 20px 0 15px 0; color: #cccccc; }
+#dialog form div.btns { text-align: center; }
+#dialog form div.btns input { margin: 0 25px; }
+#dialog form div.dlgerr {
+    padding: 10px; margin-bottom: 15px;
+    color: #660033; background-color: #cccccc;
+    font-style: italic; text-align: center; }
+

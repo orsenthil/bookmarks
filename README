@@ -1,0 +1,7 @@
+TODO:
+
+. documentation
+
+
+Bookmarklet
+javascript:(function(){var%20d=document,c=encodeURIComponent;window.open('http://127.0.0.1:8891/new?title='+c(d.title)+'&url='+c(d.location));})();
