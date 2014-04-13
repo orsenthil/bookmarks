@@ -1,7 +1,123 @@
-TODO:
+=========
+Bookmarks
+=========
+:Author: Iñigo Serna, inigoserna AT gmail DOT com
 
-. documentation
+:Version: 1.0, April 13th. 2014
+
+:Home page: http://inigo.katxi.org/devel/bookmarks
+
+:License: | Copyright © 2014, Iñigo Serna
+          | This software has been released under the `GNU Affero GPL License`_ version 3 or later.
+          | There is NO WARRANTY.
+
+:Last update: Sun Apr 13 16:08:02 2014
+
+.. meta::
+   :description: Bookmarks is a simple personal web-based application to manage web bookmarks
+   :keywords: Bookmarks, web, python
+
+.. contents:: Table of Contents
 
 
-Bookmarklet
-javascript:(function(){var%20d=document,c=encodeURIComponent;window.open('http://127.0.0.1:8891/new?title='+c(d.title)+'&url='+c(d.location));})();
+Introduction
+============
+**Bookmarks** is a simple personal web-based application to manage web bookmarks.
+
+It was coded as a funny practice, but it includes some nice features:
+
+- advanced search
+- tags cloud
+- years cloud
+
+It's written in `Python 3`_ and uses `BottlePy`_ web microframework
+and `jQuery`_ javascript library. Both are included with the package.
+
+I think this little application can be useful for anyone learning
+Python web programming.
+
+Download from `here`_.
+Code and development is publically available in the `BitBucket repository`_.
+
+
+.. table:: **Web interface on Firefox 28 on Fedora Linux 20**
+
+   ===========================   ===========================
+   .. image:: ss1.jpeg           .. image:: ss2.jpeg
+   *Home page*                   *Bookmarks*
+   ===========================   ===========================
+
+
+Using *bookmarks*
+=================
+
+Running
+-------
+Start the program from the command line and open a web browser
+pointing to the URL provided in the CLI: ::
+
+  $ python3 bookmarks.py
+  Bottle v0.12.5 server starting up (using WSGIRefServer())...
+  Listening on http://127.0.0.1:8891/
+  Hit Ctrl-C to quit.
+
+You can import bookmarks from *Firefox* in JSON format: ::
+
+  $ python3 bookmarks.py --import-firefox-json bookmarks.json
+
+
+Searching
+---------
+**Bookmarks** has impletented a powerful searching mechanism, which is
+accesible from the home page.
+
+In the results page you can click on the search term to edit it.
+
+Some examples:
+
+**Bookmarks**
+  Will search for the string "Bookmarks", both in capital or lower cases
+
+**Bookmarks tag:python**
+  Will search for the string "Bookmarks" but only in bookmarks with the
+  tag "python"
+
+**Bookmarks tag:python,+bottlepy,-sqlite**
+  Will search for the string "Bookmarks" but only in bookmarks tagged
+  with "python" AND "bottlepy", but NOT WITH "sqlite"
+
+
+Managing bookmarks
+------------------
+You can add, edit or delete bookmarks from the web interface.
+
+Add bookmark manually
+~~~~~~~~~~~~~~~~~~~~~
+Click on the *"+"* icon in home page and fill the required fields.
+
+Add bookmark from your web browser 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Save this *Bookmarklet* in your web browser *Bookmaks Toolbar* and
+click it whenever you want to add a new bookmark for current page: ::
+
+  javascript:(function(){var%20d=document,c=encodeURIComponent;window.open('http://127.0.0.1:8891/new?title='+c(d.title)+'&url='+c(d.location));})();
+
+NOTE: you might need to change the URL above.
+
+Edit bookmark
+~~~~~~~~~~~~~
+In bookmarks view, place mouse over the bookmark and click on the *"edit"*
+icon at the right.
+
+Delete bookmark
+~~~~~~~~~~~~~~~
+In bookmarks view, place mouse over the bookmark and click on the *"x"*
+icon at the right.
+
+.. _`GNU Affero GPL License`: http://www.gnu.org/licenses/agpl-3.0.html
+.. _`BitBucket repository`: https://bitbucket.org/inigoserna/bookmarks
+.. _here: https://inigo.katxi.org/devel/bookmarks/bookmarks-1.0.tar.gz
+
+.. _`Python 3`: http://www.python.org
+.. _BottlePy: http://bottlepy.org
+.. _jQuery: http://jquery.com
