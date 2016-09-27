@@ -50,9 +50,14 @@ def import_firefox_json(bs, filename):
                 if title not in ('Bookmarks Menu', 'Bookmarks Toolbar'):
                     tags.append(title)
         for o in obj['children']:
-            if (type(o) == type(dict())) and ('uri' in o):
+            if isinstance(o, dict) and 'uri' in o:
                 added = datetime.datetime.fromtimestamp(int(o['dateAdded']/1e6)) if 'dateAdded' in o else None
-                res.append((o['title'], o['uri'], tags, added))
+                try:
+                    res.append((o['title'], o['uri'], tags, added))
+                except KeyError:
+                    if not 'title' in o:
+                        print('Warning: missing title in URL <{}>'.format(o['uri']))
+                        res.append(('Unknown', o['uri'], tags, added))
             if 'children' in o:
                 res.extend(parse(o, tags))
         return res
@@ -85,7 +90,7 @@ def parse_searchterm(text):
         else:
             d['|'].append(elm)
 
-    terms, tags, years = {'&': [], '|': [], '-': []}, {'&': [], '|': [], '-': []},  {'&': [], '|': [], '-': []}
+    terms, tags, years = {'&': [], '|': [], '-': []}, {'&': [], '|': [], '-': []}, {'&': [], '|': [], '-': []}
     for t in shlex.split(text):
         t = t.strip().lower()
         if t.startswith('tag:'):
@@ -272,7 +277,7 @@ def serve_static(filename):
 # ajax
 @app.post('/ajax/add')
 def add_bm():
-    if not 'title' in bottle.request.params.keys() or not 'url' in bottle.request.params.keys():
+    if 'title' not in bottle.request.params.keys() or 'url' not in bottle.request.params.keys():
         bottle.abort(400, 'Error adding bookmark')
     try:
         title = bottle.request.params.get('title').strip()
@@ -287,8 +292,8 @@ def add_bm():
 
 @app.post('/ajax/edit')
 def edit_bm():
-    if not 'url_old' in bottle.request.params.keys() or not 'title' in bottle.request.params.keys() or \
-       not 'url' in bottle.request.params.keys() or not 'tags' in bottle.request.params.keys():
+    if 'url_old' not in bottle.request.params.keys() or 'title' not in bottle.request.params.keys() or \
+       'url' not in bottle.request.params.keys() or 'tags' not in bottle.request.params.keys():
         bottle.abort(400, 'Error editing bookmark')
     try:
         url_old = bottle.request.params.get('url_old').strip()
@@ -301,7 +306,7 @@ def edit_bm():
 
 @app.post('/ajax/remove')
 def remove_bm():
-    if not 'url' in bottle.request.params.keys():
+    if 'url' not in bottle.request.params.keys():
         bottle.abort(400, 'Error removing bookmark: no URL provided')
     try:
         url = bottle.request.params.get('url').strip()
